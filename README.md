@@ -1,7 +1,11 @@
 # intel_data
 
 ## Project Pipeline
+This project was born from the frustration of endless, noisy web scrapes and the wasted hours spent cleaning HTML before any real insights could emerge. By combining a declarative plan-driven crawler, configurable content filters, and lightweight extractors, our goal is to hand off perfectly structured JSON—complete with quality scores and audit logs—directly into downstream LLMs or BI tools. In short, we turn “data chaos” into “machine-ready” answers at scale, slashing manual effort and keeping token costs in check.
 
+<div align="center">
+  <img width="640" height="482" alt="image" src="https://github.com/user-attachments/assets/9561ef87-90ff-4c56-aebf-c838b9731eb3" />
+</div>
 Our data pipeline transforms initial requirements into a validated dataset through four distinct phases:
 
 - [x] **Phase 1: Requirement JSON**  \
