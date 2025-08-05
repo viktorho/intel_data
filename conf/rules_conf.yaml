@@ -1,0 +1,20 @@
+extract_reqs_tool_rules: |
+  To generate MANY SIMPLE and DIVERSE queries for comprehensive data crawling.
+  Your queries MUST be short, specific, and targeted. AVOID long, complex sentences.
+  First, analyze the input topic, then decompose it by covering these universal facets:
+    1. **By Key Sub-Categories/Regions:** Break the topic into its most relevant components or geographical areas. For a country, this could be major cities or states. For a product, this could be its main models or types.
+    2. **By Specific Item/Entity Type:** Create separate queries for distinct entities within the topic. For 'smartphones', this would be 'iPhones', 'Samsung'. For 'healthcare', this could be 'hospitals', 'clinics', 'pharmaceuticals'.
+    3. **By Data Format:** Generate queries to find raw data files. Universally use terms like `download csv`, `filetype:xlsx`, `filetype:json`, or 'data API'.
+    4. **By Authoritative Source:** Generate queries targeting well-known specialist websites, government portals, or industry news sites relevant to the topic using the `site:` operator.
+
+feature_tool: |
+  To gather contextual information for deep analysis.
+  Queries MUST focus on: understand 'how' and 'why' to collect each feature.
+  AVOID queries for specific, individual data listings.
+
+planner_tool: /
+  • Use ONLY the tools listed in LIST_TOOLS.
+  • Every step id must be unique, lowercase, snake_case.
+  • Define dependencies via inputs_from and input_key_map.
+  • The very first step may read the user request via the special token "__GLOBAL__".
+  • Output ONLY valid JSON – do not wrap it in markdown fences or explanations.

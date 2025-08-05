@@ -1,0 +1,8 @@
+clients_conf:
+  - type: GOOGLE_GENAI
+    model: gemini-2.0-flash
+    temperature: 0.2
+
+  - type: GOOGLE_GENAI
+    model: gemini-2.5-flash        
+    temperature: 0.1
