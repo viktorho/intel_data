@@ -42,8 +42,8 @@ LIST_EMBEDDER = {
 def log_value(func: Callable) -> Callable:
     @wraps(func)
     def wrapper(*args, **kwargs) -> Any:
-        result = func(*args, **kwargs)
-        logger.info("Returned from %s: %s", func.__name__, result)
+        node, result = func(*args, **kwargs)
+        logger.info("Returned from %s: %s", node, result)
         return result
     return wrapper
 
@@ -153,14 +153,3 @@ def build_embedder(conf: Dict[str, Any]) -> Embeddings:
             f"Available: {list(LIST_EMBEDDER)}"
         )
     return LIST_EMBEDDER[kind](**conf)
-
-from crawler import WebCrawler
-
-def build_crawler() -> WebCrawler:
-    
-    """
-    Build a web crawler instance.
-    """
-    conf = load_config("conf/web_crawler.yaml")
-    web_crawler_conf = conf["web_crawler_conf"]
-    return WebCrawler(conf=web_crawler_conf)

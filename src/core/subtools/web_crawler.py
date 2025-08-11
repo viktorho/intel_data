@@ -105,7 +105,6 @@ class WebCrawler:
             **crawler_config if crawler_config else {},
         )
         self._session = None
-        # self.max_workers = max_workers
         self._executor = ThreadPoolExecutor(max_workers=max_workers)
 
     async def _get_session(self):
@@ -304,7 +303,7 @@ if __name__ == "__main__":
             "params": {
                 "patterns": [r"(?<![A-Z]\.[A-Z]\.)(?<![A-Z][a-z]\.)(?<=[.?!])\s+"]
             }
-}
+    }
     )
 
     asyncio.run(main())

@@ -1,23 +1,14 @@
 
-from typing import List, ClassVar, Type, Any
+from typing import List, ClassVar, Type, Any, Dict
 from pydantic import BaseModel, Field
 from langextract.data import ExampleData, Extraction as LEExtraction   
+
 
 class Extraction(BaseModel):
     label: str = Field(..., description="Semantic category (e.g. organization, product, date)")
     value: str = Field(..., description="Surface string extracted from the text")
 
-def to_langextract(sample_data: ExampleData) -> ExampleData:
-        """
-        Convert self into a langextract.data.ExampleData instance.
-        """
-        return ExampleData(
-            text=sample_data.text,
-            extractions=[
-                LEExtraction(ext.label, ext.value)
-                for ext in sample_data.extractions
-            ],
-        )
+
 
 class ExampleDataFm(BaseModel):
     """
@@ -25,7 +16,6 @@ class ExampleDataFm(BaseModel):
     The `to_langextract()` method (our add-on hook) converts it to
     langextract.data.ExampleData on demand.
     """
-    HELPER: ClassVar[List[Type[Any]]] = []
 
     SYS_PROMPT: ClassVar[str] = """
     You are “Example-Data Generator”, an assistant that fabricates *single-paragraph* news-style snippets and returns them as a JSON object that conforms to the Pydantic schema `ExampleDataFm`.
@@ -59,3 +49,17 @@ class ExampleDataFm(BaseModel):
     extractions: List[Extraction]
 
 
+def to_langextract(
+          *,
+          _input: ExampleDataFm
+          ) -> ExampleData:
+        """
+        Convert self into a langextract.data.ExampleData instance.
+        """
+        return ExampleData(
+            text=_input.text,
+            extractions=[
+                LEExtraction(ext.label, ext.value)
+                for ext in _input.extractions
+            ],
+        )

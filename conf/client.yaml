@@ -6,3 +6,7 @@ clients_conf:
   - type: GOOGLE_GENAI
     model: gemini-2.5-flash        
     temperature: 0.1
+
+helper_conf:
+  - type: CrawlerToolFm/WebCrawler
+    web_crawler_conf_yaml: 'conf/web_crawler_conf.yaml'

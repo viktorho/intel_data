@@ -21,3 +21,6 @@ class ListPromptFm(BaseModel):
     )
     
     queries: List[SubPrompt] = Field(..., description="A list of targeted search prompts to be executed.")
+
+    def to_str_queries(self):
+        return [q.query for q in self.queries]

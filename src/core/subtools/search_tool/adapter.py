@@ -62,6 +62,7 @@ class BraveClient(BaseSearchClient):
         async with aiohttp.ClientSession(headers=self.headers) as s:
             logging.debug("Requesting Brave search: %s", link)
             async with s.get(link, params=params, timeout=15) as r:
+                logging.debug("Call")
                 data = await r.json()
         logging.debug("Brave search response: %s", data)
         return data.get("web", {}).get("results", [])[:k]
